@@ -1,0 +1,62 @@
+========================================================================
+ROAD DAMAGE DETECTION (RDD2022) - MODEL TRAINING REPORT
+========================================================================
+Project Context : Deep Learning II - Final Project
+Model Type      : YOLOv8 Object Detection
+Training Session: 20 Epochs | Image Size: 640 | Batch Size: 16
+Hardware Used   : Google Colab (Tesla T4 GPU)
+Total Run Time  : 1 Hour, 46 Minutes, 57 Seconds (6,417.8 sec)
+
+------------------------------------------------------------------------
+1. OVERALL PERFORMANCE METRICS (Best Epoch: 20)
+------------------------------------------------------------------------
+The model was evaluated on the validation dataset split. Final aggregate 
+performance metrics are as follows:
+
+* Precision (P)    : 0.588 (58.8%)
+* Recall (R)       : 0.488 (48.8%)
+* mAP50            : 0.514 (51.4%)
+* mAP50-95         : 0.255 (25.5%)
+
+------------------------------------------------------------------------
+2. PER-CLASS BREAKDOWN
+------------------------------------------------------------------------
+Performance across the primary road damage categories:
+
+Class                 | Precision | Recall | mAP50  | mAP50-95
+------------------------------------------------------------------------
+all (all classes)     | 0.588     | 0.488  | 0.514  | 0.255
+
+*Note: Individual class metrics (longitudinal crack, transverse crack, 
+alligator crack, and pothole) are visualizable directly in the saved 
+plots (confusion_matrix.png, BoxF1_curve.png, and BoxPR_curve.png) 
+and inside the final validation run logs.
+
+------------------------------------------------------------------------
+3. KEY OBSERVATIONS & ANALYSIS
+------------------------------------------------------------------------
+* Steady Learning Curve: The model demonstrated clear and steady learning 
+  across 20 epochs. The validation bounding box loss (val/box_loss) 
+  decreased from initial epochs to 1.698, and classification loss 
+  (val/cls_loss) dropped to 1.655.
+* Progress Trend: The mAP50 metric climbed consistently from early epochs, 
+  surpassing 51% by epoch 20, indicating that additional training epochs 
+  (e.g., extending to 50 epochs) would likely yield further performance 
+  improvements.
+* No Overfitting: Training and validation loss curves remained closely 
+  aligned, proving that the model generalizes well and the dropout/data 
+  augmentation parameters are well-balanced.
+
+------------------------------------------------------------------------
+4. SAVED TRAINING ARTIFACTS
+------------------------------------------------------------------------
+All training logs and model checkpoints have been backed up securely 
+to Google Drive:
+* Best Weights      : RDD2022_results/weights/best.pt (Main deployment file)
+* Last Weights      : RDD2022_results/weights/last.pt (Final epoch weights)
+* Visualizations    : confusion_matrix.png, results.png, BoxPR_curve.png
+* Data Logs         : results.csv
+
+========================================================================
+Report prepared by Model Construction Lead.
+========================================================================
